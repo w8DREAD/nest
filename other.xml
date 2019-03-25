@@ -1,0 +1,37 @@
+<application>
+  <component name="NodeJsLocalInterpreters">
+    <local-interpreter path="C:/Program Files/nodejs/node.exe">
+      <version-cache last-modified="0" />
+    </local-interpreter>
+    <local-interpreter path="E:/nodejs/node.exe">
+      <version-cache version="10.15.1" last-modified="1548737400000" />
+    </local-interpreter>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ColorChooser.RecentColors" value="60-195-149-255,,,207-204-170-255" />
+    <property name="CommitChangeListDialog.DETAILS_SPLITTER_PROPORTION_2" value="0.55159706" />
+    <property name="Copy.OpenInEditor" value="true" />
+    <property name="Default.savedEditorTheme" value="_@user_Default" />
+    <property name="ExpandBeforeRunStepsPanel" value="true" />
+    <property name="ExpandRunDashboardTypesPanel" value="false" />
+    <property name="FileTemplates.SelectedTemplate" value="HTML File" />
+    <property name="LAST_INJECTED_LANGUAGE" value="HTML" />
+    <property name="SearchEveryWhereHistory" value="&lt;" />
+    <property name="SettingsSearchHistory" value="watcher&#10;detect indent" />
+    <property name="WebStorm.enableDefaultTooltipFixes" value="true" />
+    <property name="WebStorm.enableSmartQuotes" value="true" />
+    <property name="WebStorm.initialConfigurationShown" value="true" />
+    <property name="evlsprt.182" value="16730cf27b8" />
+    <property name="evlsprt.183" value="16973511ae5" />
+    <property name="evlsprt2.182" value="168bf322b3a" />
+    <property name="evlsprt2.183" value="1693fd1c2d3" />
+    <property name="evlsprt3.181" value="11" />
+    <property name="evlsprt3.182" value="11" />
+    <property name="evlsprt3.183" value="10" />
+    <property name="file.chooser.recent.files" value="E:/GitHub/package.json&#10;E:/GitHub/new-exp&#10;E:/HTML/Shop/Main.html&#10;E:/GitHub/myLocal&#10;E:/GitHub/myLocal/nodejs&#10;E:/HTML/Shop/css/Banner.css&#10;E:/HTML/Shop/css/script.js&#10;E:/HTML/Shop/css/style.css&#10;E:/GitHub/myLocal/javaS.js&#10;E:/HTML/Shop&#10;C:/Users/DREAD/node_modules/.bin/babel&#10;C:/Users/DREAD/node_modules/@babel&#10;E:/MyReact/my-app&#10;E:/React&#10;C:/Program Files/nodejs/node.exe&#10;E:/React/todomvc/tests&#10;E:/HTML&#10;E:/HTML/Duplex&#10;E:/HTML/JavaS.html" />
+    <property name="file.gist.reindex.count" value="51743" />
+    <property name="fileTypeChangedCounter" value="2" />
+    <property name="js.chrome.debugger.port.98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" value="53718" />
+    <property name="ts.lib.d.ts.version" value="3.2.1" />
+  </component>
+</application>
