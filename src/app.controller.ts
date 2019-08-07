@@ -7,6 +7,6 @@ export class AppController {
 
   @Get()
   findAll(@Req() res) {
-    return res;
+    return '123';
   }
 }
