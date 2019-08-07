@@ -1,0 +1,46 @@
+<scheme name="MyTheme" version="142" parent_scheme="Darcula">
+  <metaInfo>
+    <property name="created">2019-08-07T20:25:43</property>
+    <property name="ide">WebStorm</property>
+    <property name="ideVersion">2019.2.0.0</property>
+    <property name="modified">2019-08-07T20:43:18</property>
+    <property name="originalScheme">_@user_Darcula</property>
+  </metaInfo>
+  <colors>
+    <option name="GUTTER_BACKGROUND" value="0" />
+    <option name="LINE_NUMBERS_COLOR" value="a5cd67" />
+    <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="6354ec" />
+    <option name="METHOD_SEPARATORS_COLOR" value="fbfff8" />
+    <option name="SELECTED_TEARLINE_COLOR" value="" />
+    <option name="SEPARATOR_ABOVE_COLOR" value="3c3f41" />
+    <option name="SEPARATOR_BELOW_COLOR" value="" />
+    <option name="TEARLINE_COLOR" value="" />
+  </colors>
+  <attributes>
+    <option name="BREADCRUMBS_CURRENT">
+      <value>
+        <option name="FOREGROUND" value="bbbbbb" />
+        <option name="BACKGROUND" value="3c3f41" />
+      </value>
+    </option>
+    <option name="FOLDED_TEXT_ATTRIBUTES">
+      <value>
+        <option name="FOREGROUND" value="a1a1a1" />
+        <option name="BACKGROUND" value="3a3c3e" />
+      </value>
+    </option>
+    <option name="INACTIVE_HYPERLINK_ATTRIBUTES">
+      <value>
+        <option name="EFFECT_COLOR" value="66cd" />
+        <option name="EFFECT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="TEXT">
+      <value>
+        <option name="FOREGROUND" value="fbfff8" />
+        <option name="BACKGROUND" value="0" />
+        <option name="EFFECT_TYPE" value="5" />
+      </value>
+    </option>
+  </attributes>
+</scheme>
