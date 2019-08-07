@@ -3,7 +3,7 @@
     <property name="created">2019-08-07T20:25:43</property>
     <property name="ide">WebStorm</property>
     <property name="ideVersion">2019.2.0.0</property>
-    <property name="modified">2019-08-07T20:43:18</property>
+    <property name="modified">2019-08-07T20:53:19</property>
     <property name="originalScheme">_@user_Darcula</property>
   </metaInfo>
   <colors>
@@ -21,6 +21,29 @@
       <value>
         <option name="FOREGROUND" value="bbbbbb" />
         <option name="BACKGROUND" value="3c3f41" />
+      </value>
+    </option>
+    <option name="DEFAULT_CLASS_NAME">
+      <value>
+        <option name="FOREGROUND" value="bbbbbb" />
+      </value>
+    </option>
+    <option name="DEFAULT_FUNCTION_DECLARATION">
+      <value>
+        <option name="FOREGROUND" value="ffc839" />
+      </value>
+    </option>
+    <option name="DEFAULT_GLOBAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="c7cbc4" />
+      </value>
+    </option>
+    <option name="DEFAULT_IDENTIFIER">
+      <value />
+    </option>
+    <option name="DEFAULT_LOCAL_VARIABLE">
+      <value>
+        <option name="FOREGROUND" value="c5eaf4" />
       </value>
     </option>
     <option name="FOLDED_TEXT_ATTRIBUTES">
