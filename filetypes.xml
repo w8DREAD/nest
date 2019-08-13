@@ -6,6 +6,7 @@
       <mapping pattern="asyncMiddleware" type="JavaScript" />
       <mapping pattern="data" type="PLAIN_TEXT" />
       <mapping pattern="usersdb" type="PLAIN_TEXT" />
+      <mapping ext="db-journal" type="PLAIN_TEXT" />
       <mapping ext="node" type="PLAIN_TEXT" />
       <mapping ext="db" type="PLAIN_TEXT" />
       <removed_mapping ext="cmd" approved="true" type="PLAIN_TEXT" />
