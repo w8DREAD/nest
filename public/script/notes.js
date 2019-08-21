@@ -1,17 +1,14 @@
 // добавить заметку
 if (document.querySelector('button.add-notes')) {
   const addNotes = document.querySelector('button.add-notes');
-
   addNotes.addEventListener('click', async () => {
-    const tag = document.getElementById('inputTags');
     const note = document.querySelector('textarea.form-control');
     const json = JSON.stringify({
-      tagText: tag.value,
-      noteText: note.value,
+      text: note.value,
     });
-    xhr('post', '/api/v1/addNotes', json, 'application/json')
+    xhr('post', '/api/v2/notes', json, 'application/json')
       .then(() => {
-        window.location.href = 'notes';
+        window.location.href = '/';
       })
       .catch((err) => {
         const elemErr = `<div class="alert alert-warning" role="alert" id="elemErr">
@@ -45,47 +42,9 @@ window.addEventListener('click', (target) => {
     const deleteApply = window.confirm('Заметка удалиться со всеми комментариями!\n Вы уверены что хотите удалить заметку?');
     if (deleteApply) {
       const main = document.querySelector('div.content');
-      xhr('delete', `notes/${idForDb}`);
+      xhr('delete', `api/v1/notes/${idForDb}`);
       main.removeChild(post);
     }
-  }
-});
-
-// редактировать тэг
-window.addEventListener('click', (target) => {
-  const targetClassName = target.target.parentNode.className;
-  let idForDb;
-  if (target.target.attributes.name) {
-    idForDb = target.target.attributes.name.value;
-  }
-  if (targetClassName === 'like edit tag button') {
-    return new Promise((resolve) => {
-      const tag = document.getElementById(`tag-${idForDb}`);
-      const tagText = tag.innerText;
-      tag.setAttribute('contenteditable', 'true');
-      tag.removeAttribute('href');
-      tag.style.background = '#FFFFFF';
-      tag.focus();
-      resolve([tag, tagText]);
-    })
-      .then(([tag, tagText]) => {
-        const elemNote = tag;
-        elemNote.onblur = function () {
-          const saveChange = window.confirm('Сохранить изменения?');
-          elemNote.style.background = '';
-          tag.setAttribute('contenteditable', 'false');
-          tag.setAttribute('href', '');
-          if (saveChange) {
-            const editText = `tagText=${elemNote.innerText}`;
-            xhr('put', `notes/${idForDb}`, editText)
-              .catch(() => {
-                elemNote.innerText = tagText;
-              });
-          } else {
-            elemNote.innerText = tagText;
-          }
-        };
-      });
   }
 });
 
@@ -97,6 +56,7 @@ window.addEventListener('click', (target) => {
     idForDb = target.target.attributes.name.value;
   }
   if (targetClassName === 'like edit text button') {
+
     return new Promise((resolve) => {
       const note = document.getElementById(`note-${idForDb}`);
       const noteText = note.innerText;
@@ -113,7 +73,7 @@ window.addEventListener('click', (target) => {
           note.setAttribute('contenteditable', 'false');
           if (saveChange) {
             const editText = `noteText=${elemNote.innerText}`;
-            xhr('put', `notes/${idForDb}`, editText)
+            xhr('put', `api/v1/notes/${idForDb}`, editText)
               .catch(() => {
                 elemNote.innerText = noteText;
               });
@@ -136,7 +96,7 @@ window.addEventListener('click', (target) => {
     const json = JSON.stringify({
       noteId: idForDb,
     });
-    xhr('post', '/api/v1/notes/like', json, 'application/json')
+    xhr('post', '/api/v1/likes/', json, 'application/json')
       .then((res) => {
         response = res;
         if (JSON.parse(res).status) {

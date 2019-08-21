@@ -1,12 +1,19 @@
 import { Module } from '@nestjs/common';
-import { Notes } from '../controllers/notes';
-import { AppService } from '../provider/app.service';
+import { NoteService } from '../provider/note.service';
+
+import { PageNotes } from '../controllers/pageNotes';
 import { Main } from '../controllers/main';
-import { addNotes } from '../controllers/addNotes';
+import { AddNote } from '../controllers/addNote';
+import { Logs } from '../controllers/logs';
+import { Features } from '../controllers/features';
+import { Register } from '../controllers/register';
+import { Login } from '../controllers/login';
+import { Logout } from '../controllers/logout';
+import { Notes } from '../controllers/notes';
 
 @Module({
   imports: [],
-  controllers: [Notes, Main, addNotes],
-  providers: [AppService],
+  controllers: [PageNotes, Main, AddNote, Logs, Features, Register, Login, Logout, Notes],
+  providers: [NoteService],
 })
 export class AppModule {}

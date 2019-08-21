@@ -1,10 +1,11 @@
-import { Controller, Get} from '@nestjs/common';
-import { AppService } from '../provider/app.service';
+import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller()
 export class Main {
     @Get()
-    findAll(): string {
-        return 'main';
+    @Render('main')
+    root() {
+        return {news: 'Главная',
+            addClassMain: 'active'};
     }
 }

@@ -13,7 +13,7 @@ window.addEventListener('click', (target) => {
       id: idForDb,
       text: textInner,
     });
-    xhr('post', '/api/v1/comments/create', json, 'application/json')
+    xhr('post', '/api/v1/comments/', json, 'application/json')
       .then((res) => {
         if (document.getElementById('elemErr')) {
           const delElem = document.getElementById('elemErr');
@@ -63,8 +63,11 @@ window.addEventListener('click', (target) => {
     });
     const deleteApply = window.confirm('Вы уверены что хотите удалить комментарий?');
     if (deleteApply) {
-      xhr('delete', `/api/v1/comments/${idForDb}`);
-      comment.parentNode.removeChild(comment);
+      xhr('delete', `/api/v1/comments/${idForDb}`)
+        .then(() => {
+          comment.parentNode.removeChild(comment);
+        })
+        .catch(() => console.log('Нет прав на удаление комментария'));
     }
   }
 });

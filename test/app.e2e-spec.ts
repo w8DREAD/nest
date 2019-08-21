@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/modules/app.module';
 import { INestApplication } from '@nestjs/common';
 
-describe('Notes (e2e)', () => {
+describe('PageNotes (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {

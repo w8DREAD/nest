@@ -1,12 +1,18 @@
-import { Controller, Get, Render, Res, HttpStatus} from '@nestjs/common';
-import { AppService } from '../provider/app.service';
+import { Controller, Post, Body, Res, Req } from '@nestjs/common';
+import { Response } from 'express';
+import { Request } from 'express';
+import { addNotesDto } from '../dto/notes.dto';
+import { NoteService } from '../provider/note.service';
 
-@Controller('notes')
+@Controller('/api/v2/notes')
 export class Notes {
-
-  @Get()
-  @Render('notes')
-  root() {
-    return {news: 'Тут будут новости'}
+  constructor(private readonly noteService: NoteService) {}
+@Post()
+create(
+  @Body() createNoteDto: addNotesDto,
+  @Res() res: Response,
+  @Req() req: Request) {
+    console.log(this.noteService.create(createNoteDto));
+    res.redirect('/');
   }
 }
