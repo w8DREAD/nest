@@ -15,7 +15,7 @@ async function server() {
   hbs.registerPartials(join(__dirname, '..', '/partials'));
   app.use(
     session({
-      secret: process.env.SESSION_SECRET || 'secret',
+      secret: 'secret',
       name: 'passport-local-test-session',
       resave: false,
       saveUninitialized: false,
