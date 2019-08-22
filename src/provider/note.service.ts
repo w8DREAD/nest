@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { NoteInterfaces } from 'src/interfaces/note.interfaces';
+import { NoteInterfaces } from '../interfaces/note.interfaces';
 
 @Injectable()
 export class NoteService {

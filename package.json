@@ -1,15 +1,16 @@
 {
-  "name": "nest-typescript-starter",
-  "private": true,
-  "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "name": "auth-sample",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.build.json",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/index.js\"",
-    "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/index.js\"",
+    "start:dev": "concurrently --handle-input \"wait-on dist/index.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/index.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
@@ -19,36 +20,37 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^6.0.4",
-    "@nestjs/core": "^6.0.4",
-    "@nestjs/microservices": "^6.0.4",
-    "@nestjs/passport": "^6.1.0",
-    "@nestjs/platform-express": "^6.0.4",
-    "@nestjs/websockets": "^6.0.4",
+    "@nestjs/common": "6.5.3",
+    "@nestjs/core": "6.5.3",
+    "@nestjs/jwt": "6.1.1",
+    "@nestjs/passport": "6.1.0",
+    "@nestjs/platform-express": "6.5.3",
     "express-session": "^1.16.2",
     "hbs": "^4.0.4",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
+    "passport": "0.4.0",
+    "passport-jwt": "4.0.0",
+    "passport-local": "1.0.0",
     "reflect-metadata": "0.1.13",
-    "rimraf": "2.6.3",
-    "rxjs": "6.4.0"
+    "rimraf": "2.7.1",
+    "rxjs": "6.5.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "6.1.1",
-    "@types/express": "4.16.1",
-    "@types/jest": "24.0.11",
-    "@types/node": "11.13.4",
-    "@types/passport-local": "^1.0.33",
-    "@types/supertest": "2.0.7",
-    "jest": "24.7.1",
-    "prettier": "1.17.0",
+    "@nestjs/testing": "6.5.3",
+    "@types/express": "4.17.0",
+    "@types/jest": "24.0.17",
+    "@types/node": "10.14.15",
+    "@types/supertest": "2.0.8",
+    "concurrently": "4.1.1",
+    "jest": "23.6.0",
+    "nodemon": "1.19.1",
+    "prettier": "1.18.2",
     "supertest": "4.0.2",
     "ts-jest": "24.0.2",
     "ts-node": "8.1.0",
-    "tsc-watch": "2.2.1",
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
-    "typescript": "3.4.3"
+    "typescript": "3.5.3",
+    "wait-on": "3.3.0"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -61,9 +63,6 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
