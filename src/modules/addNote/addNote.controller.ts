@@ -1,7 +1,7 @@
 import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller('/addNote')
-export class AddNote {
+export class AddNoteController {
     @Get()
     @Render('addNote')
     root() {

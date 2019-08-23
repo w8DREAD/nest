@@ -1,7 +1,7 @@
 import { Controller, Get, Render } from '@nestjs/common';
 
 @Controller('/features')
-export class Features {
+export class FeaturesController {
   @Get()
   @Render('features')
   root() {

@@ -5427,7 +5427,7 @@
             return;
         }
 
-        // Register the controller as a special universal handler for all event namespaces
+        // RegisterController the controller as a special universal handler for all event namespaces
         dataPriv.set( el, type, false );
         jQuery.event.add( el, type, {
             namespace: false,
@@ -9119,7 +9119,7 @@
         ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
         ajaxTransport: addToPrefiltersOrTransports( transports ),
 
-        // Main method
+        // MainController method
         ajax: function( url, options ) {
 
             // If url is an object, simulate pre-1.5 signature
@@ -10542,7 +10542,7 @@
 
 
 
-// Register as a named AMD module, since jQuery can be concatenated with other
+// RegisterController as a named AMD module, since jQuery can be concatenated with other
 // files that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
 // way to register. Lowercase jquery is used because AMD module names are

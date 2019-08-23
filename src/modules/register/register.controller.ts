@@ -2,7 +2,7 @@ import { Controller, Get, Render, Res } from '@nestjs/common';
 import { Response } from 'express';
 
 @Controller('/register')
-export class Register {
+export class RegisterController {
   @Get()
   @Render('register')
   findAll(@Res() response: Response) {
