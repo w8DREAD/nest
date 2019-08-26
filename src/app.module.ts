@@ -14,6 +14,8 @@ import { NotesModule } from './modules/notes/notes.module';
 import { PageNotesModule } from './modules/pageNotes/pageNotes.module';
 import { RegisterModule } from './modules/register/register.module';
 
+console.log('43')
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(), AuthModule, UsersModule, UsersTableModule, AddNoteModule, FeaturesModule,

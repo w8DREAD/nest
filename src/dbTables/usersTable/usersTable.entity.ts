@@ -2,7 +2,6 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UsersTableEntity {
-
   @PrimaryGeneratedColumn()
   id: number;
 
