@@ -13,7 +13,7 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db) {
-  db.runSql('CREATE TABLE notestags (noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL,\n'
+  db.runSql('CREATE TABLE notesTags (noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL,\n'
     + 'tagId INTEGER REFERENCES tags (id) ON DELETE CASCADE NOT NULL)');
   db.runSql("CREATE OR REPLACE FUNCTION updNotesTags()\n" +
     "RETURNS trigger\n" +

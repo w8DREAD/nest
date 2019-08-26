@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Res, Req } from '@nestjs/common';
 import { Response } from 'express';
 import { Request } from 'express';
-import { addNotesDto } from '../../dto/notes.dto';
+import { AddNotesDto } from '../../dto/notes.dto';
 // import { PageNotesService } from '../pageNotes/pageNotes.service';
 
 @Controller('/api/v2/notes')

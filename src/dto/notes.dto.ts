@@ -1,3 +1,3 @@
-export class addNotesDto {
+export class AddNotesDto {
         readonly text: string;
 }

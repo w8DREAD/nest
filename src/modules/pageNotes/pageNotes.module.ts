@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { PageNotesController } from './pageNotes.controller';
 import { PageNotesService } from './pageNotes.service';
-import { UsersTableModule } from '../../dbTables/usersTable/usersTable.module';
+import { UsersTableModule } from '../../dbTables/users/usersTable.module';
 
 @Module({
   imports: [UsersTableModule],

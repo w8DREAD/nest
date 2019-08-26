@@ -13,9 +13,11 @@ if (document.querySelector('button.register-user')) {
       password: password.value,
       email: email.value,
       telephone: +telephone.value,
-      dateBirthday: dateBirthday.value,
+      date: dateBirthday.value,
+      myLike: 0,
+      notesCount: 0,
     });
-    xhr('post', '/api/v1/users/', json, 'application/json')
+    xhr('post', '/api/v2/users/', json, 'application/json')
       .then(() => {
         window.location.href = './login';
       })

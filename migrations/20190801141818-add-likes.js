@@ -13,13 +13,11 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db) {
-  db.runSql("CREATE TABLE likes (noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL,\n"
+  return db.runSql("CREATE TABLE likes (id SERIAL primary key, noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL,\n"
     + "userId INTEGER NOT NULL REFERENCES users (id))");
-  return db.runSql("CREATE INDEX idxLikes ON likes (noteId ASC, userId ASC);");
 };
 
 exports.down = function(db) {
-  db.runSql("DROP INDEX idxLikes");
   return db.dropTable("likes");
 };
 

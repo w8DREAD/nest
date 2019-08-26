@@ -1,12 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from './app.module';
+import { ApplicationModule } from './app.module';
 import { join } from 'path';
 import * as hbs from 'hbs';
 import * as passport from 'passport';
 
 async function server() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(ApplicationModule);
   app.useStaticAssets(join(__dirname, '..', '/public'));
 
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
