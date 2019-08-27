@@ -9,5 +9,5 @@ export class Tags {
   tag: string;
 
   @Column()
-  noteId: number;
+  note_id: number;
 }

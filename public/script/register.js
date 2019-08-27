@@ -14,8 +14,8 @@ if (document.querySelector('button.register-user')) {
       email: email.value,
       telephone: +telephone.value,
       date: dateBirthday.value,
-      myLike: 0,
-      notesCount: 0,
+      my_like: 0,
+      notes_count: 0,
     });
     xhr('post', '/api/v2/users/', json, 'application/json')
       .then(() => {

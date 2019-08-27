@@ -20,12 +20,12 @@ exports.up = function (db) {
     email: 'string',
     date: 'string',
     telephone: 'int',
-    myLike: 'int',
+    my_like: 'int',
   });
 };
 
 exports.down = function (db) {
-  return db.dropTable('users');
+  return db.runSql("DROP TABLE users");
 };
 exports._meta = {
   version: 1,

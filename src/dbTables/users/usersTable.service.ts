@@ -13,6 +13,11 @@ export class UsersTableService {
   async findAll(): Promise<Users[]> {
     return await this.usersRepository.find();
   }
+
+  async findOne(prop): Promise<Users> {
+    return await this.usersRepository.findOne(prop);
+  }
+
   async save(user): Promise<Users[]> {
     return await this.usersRepository.save(user);
   }

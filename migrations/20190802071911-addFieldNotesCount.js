@@ -18,9 +18,10 @@ exports.up = function (db) {
     "AS\n" +
     "$function$\n" +
     "BEGIN\n" +
-    "UPDATE users SET notesCount = (SELECT COUNT(*)" +
-    "FROM notes WHERE userId = users.id)" +
-    "WHERE id = NEW.userId;\n" +
+    "UPDATE users SET notes_count = (SELECT COUNT(*)" +
+    "FROM notes WHERE user_id = users.id)" +
+    "WHERE id = NEW.user_id;\n" +
+    "RETURN NEW;\n" +
     "END;\n" +
     "$function$\n" +
     "LANGUAGE 'plpgsql';");
@@ -28,33 +29,34 @@ exports.up = function (db) {
     "AFTER INSERT\n" +
     "ON notes\n" +
     "FOR EACH ROW\n" +
-    "EXECUTE PROCEDURE updNotesCountInsert ( )");
+    "EXECUTE PROCEDURE updNotesInsert ( )");
 
   db.runSql("CREATE OR REPLACE FUNCTION updNotesDelete()\n" +
     "RETURNS trigger\n" +
     "AS\n" +
     "$function$\n" +
     "BEGIN\n" +
-    "UPDATE users SET notesCount = (SELECT COUNT(*) \n" +
-    "FROM notes WHERE userId = users.id)\n" +
-    "WHERE id = OLD.userId;\n" +
+    "UPDATE users SET notes_count = (SELECT COUNT(*) \n" +
+    "FROM notes WHERE user_id = users.id)\n" +
+    "WHERE id = OLD.user_id;\n" +
+    "RETURN NEW;\n" +
     "END;\n" +
     "$function$\n" +
     "LANGUAGE 'plpgsql';");
   db.runSql("CREATE TRIGGER updNotesCountDelete\n" +
-    "AFTER INSERT\n" +
+    "AFTER delete\n" +
     "ON notes\n" +
     "FOR EACH ROW\n" +
-    "EXECUTE PROCEDURE updNotesCountDelete ( )");
+    "EXECUTE PROCEDURE updNotesDelete ( )");
 
-  return db.addColumn('users', 'notesCount', { type: 'int' });
+  return db.addColumn('users', 'notes_count', { type: 'int' });
 };
 
 exports.down = function (db) {
   db.runSql('DROP TRIGGER updNotesCountInsert ON notes');
   db.runSql('DROP TRIGGER updNotesCountDelete ON notes');
   return db.runSql("ALTER TABLE public.users\n" +
-    "DROP COLUMN \"notesCount\"");
+    "DROP COLUMN \"notes_count\"");
 };
 
 exports._meta = {

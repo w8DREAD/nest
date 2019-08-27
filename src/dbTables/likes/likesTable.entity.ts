@@ -6,8 +6,8 @@ export class Likes {
   id: number;
 
   @Column()
-  noteId: number;
+  note_id: number;
 
   @Column()
-  userId: number;
+  user_id: number;
 }

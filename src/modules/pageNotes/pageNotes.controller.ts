@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Res, HttpStatus} from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 import { UsersTableService } from '../../dbTables/users/usersTable.service';
 
 @Controller('/pageNotes')

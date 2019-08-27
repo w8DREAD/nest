@@ -1,18 +1,17 @@
-import { Controller, Post, Body, Res, Req } from '@nestjs/common';
-import { Response } from 'express';
-import { Request } from 'express';
+import { Controller, Post, Body, Res, Req, UseGuards } from '@nestjs/common';
+import { NotesTableService } from '../../dbTables/notes/notesTable.service';
 import { AddNotesDto } from '../../dto/notes.dto';
-// import { PageNotesService } from '../pageNotes/pageNotes.service';
+import { AuthenticatedGuard } from '../../auth/guards/authenticated.guard';
 
 @Controller('/api/v2/notes')
 export class NotesController {
-//   constructor(private readonly noteService: PageNotesService) {}
-// @Post()
-// create(
-//   @Body() createNoteDto: addNotesDto,
-//   @Res() res: Response,
-//   @Req() req: Request) {
-//     console.log(this.noteService.findAll());
-//     res.redirect('/');
-//   }
+  constructor(private readonly notes: NotesTableService) {}
+  @UseGuards(AuthenticatedGuard)
+@Post()
+async add(@Body() addNotesDto: AddNotesDto, @Res() res, @Req() req) {
+    addNotesDto.user_id = req.session.passport.user.id;
+    addNotesDto.com_count = 0;
+    await this.notes.save(addNotesDto);
+    res.redirect('/');
+  }
 }

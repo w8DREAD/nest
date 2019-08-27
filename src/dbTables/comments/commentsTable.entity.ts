@@ -9,8 +9,8 @@ export class Comments {
   text: string;
 
   @Column()
-  noteId: number;
+  note_id: number;
 
   @Column()
-  userId: number;
+  user_id: number;
 }

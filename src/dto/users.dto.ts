@@ -4,6 +4,6 @@ export class AddUsersDto {
   readonly email: string;
   readonly date: string;
   readonly telephone: number;
-  readonly myLike: number;
-  readonly notesCount: number;
+  readonly my_like: number;
+  readonly notes_count: number;
 }

@@ -6,7 +6,6 @@ import { AuthModule } from './auth/auth.module';
 import { AddNoteModule } from './modules/addNote/addNote.module';
 import { FeaturesModule } from './modules/features/features.module';
 import { LoginModule } from './modules/login/login.module';
-import { LogoutModule } from './modules/logout/logout.module';
 import { LogsModule } from './modules/logs/logs.module';
 import { MainModule } from './modules/main/main.module';
 import { NotesModule } from './modules/notes/notes.module';
@@ -18,14 +17,15 @@ import { NotesTableModule } from './dbTables/notes/notesTable.module';
 import { NotesTagsTableModule } from './dbTables/notesTags/notesTagsTable.module';
 import { TagsTableModule } from './dbTables/tags/tagsTable.module';
 import { UsersModule } from './modules/users/users.module';
+import { CommentsModule } from './modules/comments/comments.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     RegisterModule, AuthModule, UsersTableModule, AddNoteModule, FeaturesModule,
-    LoginModule, LogoutModule, LogsModule, MainModule, NotesModule, PageNotesModule,
+    LoginModule, LogsModule, MainModule, NotesModule, PageNotesModule,
     RegisterModule, CommentsTableModule, LikesTableModule, NotesTableModule, NotesTagsTableModule,
-    TagsTableModule, UsersLoginModule, UsersModule,
+    TagsTableModule, UsersLoginModule, UsersModule, CommentsModule,
   ],
 })
 export class ApplicationModule {}

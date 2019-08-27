@@ -12,46 +12,48 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function(db) {
-    db.runSql("CREATE OR REPLACE FUNCTION updCountInsert()\n" +
+exports.up = async function(db) {
+    await db.runSql("CREATE OR REPLACE FUNCTION updCountInsert()\n" +
       "RETURNS trigger\n" +
       "AS\n" +
       "$function$\n" +
       "BEGIN\n" +
-      "UPDATE notes SET comCount = (SELECT COUNT(*) FROM comments WHERE noteId = notes.id) WHERE id = NEW.noteId;\n" +
+      "UPDATE notes SET com_count = (SELECT COUNT(*) FROM comments WHERE note_id = notes.id) WHERE id = NEW.note_id;\n" +
+      "RETURN NEW;\n" +
       "END;\n" +
       "$function$\n" +
       "LANGUAGE 'plpgsql';");
-    db.runSql("CREATE TRIGGER updCommentsCountInsert\n" +
+    await db.runSql("CREATE TRIGGER updCommentsCountInsert\n" +
       "AFTER INSERT\n" +
       "ON comments\n" +
       "FOR EACH ROW\n" +
       "EXECUTE PROCEDURE updCountInsert ( )");
 
-    db.runSql("CREATE OR REPLACE FUNCTION updCountDelete()\n" +
+    await db.runSql("CREATE OR REPLACE FUNCTION updCountDelete()\n" +
       "RETURNS trigger\n" +
       "AS\n" +
       "$function$\n" +
       "BEGIN\n" +
-      "UPDATE notes SET comCount = (SELECT COUNT(*) \n" +
-      "FROM comments WHERE noteId = notes.id)\n" +
+      "UPDATE notes SET com_count = (SELECT COUNT(*) \n" +
+      "FROM comments WHERE note_id = notes.id)\n" +
       "WHERE id = OLD.id;\n" +
+      "RETURN NEW;\n" +
       "END;\n" +
       "$function$\n" +
       "LANGUAGE 'plpgsql';");
-    db.runSql("CREATE TRIGGER updCommentsCountDelete\n" +
-      "AFTER INSERT\n" +
+    await db.runSql("CREATE TRIGGER updCommentsCountDelete\n" +
+      "AFTER DELETE\n" +
       "ON comments\n" +
       "FOR EACH ROW\n" +
       "EXECUTE PROCEDURE updCountDelete ( )");
-    return db.addColumn("notes", "comCount", { type: "int" });
+    return db.addColumn("notes", "com_count", { type: "int" });
 };
 
-exports.down = function(db) {
-  db.runSql("DROP TRIGGER updCommentsCountInsert ON comments");
-  db.runSql("DROP TRIGGER updCommentsCountDelete ON comments");
+exports.down = async function(db) {
+  await db.runSql("DROP TRIGGER updCommentsCountInsert ON comments");
+  await db.runSql("DROP TRIGGER updCommentsCountDelete ON comments");
   return db.runSql("ALTER TABLE public.notes\n" +
-    "DROP COLUMN \"comCount\"");
+    "DROP COLUMN \"com_count\"");
 };
 
 exports._meta = {

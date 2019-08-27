@@ -14,12 +14,12 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db) {
   return db.runSql('CREATE TABLE comments (id SERIAL primary key, text VARCHAR,\n'
-    + 'noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL, '
-    + 'userId INTEGER REFERENCES users (id) NOT NULL)');
+    + 'note_id INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL, '
+    + 'user_id INTEGER REFERENCES users (id) NOT NULL)');
 };
 
 exports.down = function (db) {
-  return db.dropTable('comments');
+  return db.runSql("DROP TABLE comments");
 };
 
 exports._meta = {

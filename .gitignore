@@ -16,7 +16,6 @@ textmate_os.xml
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
-
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -399,3 +398,4 @@ Temporary Items
 docker-compose.yml
 .env
 dist
+/sessions

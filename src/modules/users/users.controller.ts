@@ -7,8 +7,8 @@ import { Response } from 'express';
 export class UsersController {
   constructor(private readonly users: UsersTableService) {}
 @Post('/users')
-  async add(@Body() addUsersDto: AddUsersDto) {
-    console.log(addUsersDto);
-    return  this.users.save(addUsersDto);
+  async add(@Res() res, @Body() addUsersDto: AddUsersDto) {
+    await this.users.save(addUsersDto);
+    res.redirect('/login');
 }
 }

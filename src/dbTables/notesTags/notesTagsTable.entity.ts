@@ -6,8 +6,8 @@ export class NotesTags {
   id: number;
 
   @Column()
-  noteId: number;
+  note_id: number;
 
   @Column()
-  tagId: number;
+  tag_id: number;
 }

@@ -15,11 +15,11 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db) {
-  return db.runSql('CREATE TABLE tags (id SERIAL primary key, tag VARCHAR, noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL)');
+  return db.runSql('CREATE TABLE tags (id SERIAL primary key, tag VARCHAR, note_id INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL)');
 };
 
 exports.down = function (db) {
-  return db.dropTable('tags');
+  return db.runSql("DROP TABLE tags");
 };
 
 exports._meta = {

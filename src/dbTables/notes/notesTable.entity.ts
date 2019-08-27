@@ -12,8 +12,8 @@ export class Notes {
   date: string;
 
   @Column()
-  userId: number;
+  user_id: number;
 
   @Column()
-  comCount: number;
+  com_count: number;
 }

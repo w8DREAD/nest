@@ -1,79 +1,95 @@
+function formatDate() {
+  const date = new Date();
+  let dd = date.getDate();
+  if (dd < 10) { dd = `0${dd}`; }
+  let mm = date.getMonth() + 1;
+  if (mm < 10) { mm = `0${mm}`; }
+  let yy = date.getFullYear() % 100;
+  if (yy < 10) { yy = `0${yy}`; }
+
+  const hh = date.getHours() % 100;
+  const min = date.getMinutes() % 100;
+
+  return `${dd}.${mm}.${yy} в ${hh}:${min}`;
+}
+
 // добавить заметку
-if (document.querySelector('button.add-notes')) {
-  const addNotes = document.querySelector('button.add-notes');
-  addNotes.addEventListener('click', async () => {
-    const note = document.querySelector('textarea.form-control');
+if (document.querySelector("button.add-notes")) {
+  const addNotes = document.querySelector("button.add-notes");
+  addNotes.addEventListener("click", async () => {
+    const note = document.querySelector("textarea.form-control");
     const json = JSON.stringify({
       text: note.value,
+      date: formatDate(),
     });
-    xhr('post', '/api/v2/notes', json, 'application/json')
+    xhr("post", "/api/v2/notes", json, "application/json")
       .then(() => {
-        window.location.href = '/';
+        window.location.href = "/";
       })
       .catch((err) => {
         const elemErr = `<div class="alert alert-warning" role="alert" id="elemErr">
           ${err.statusText}
       </div>`;
         const form = addNotes.parentNode;
-        if (document.getElementById('elemErr')) {
+        if (document.getElementById("elemErr")) {
           form.firstChild.parentNode.removeChild(form.firstChild);
         }
-        return form.insertAdjacentHTML('afterbegin', elemErr);
+        return form.insertAdjacentHTML("afterbegin", elemErr);
       });
   });
 }
 
 // удалить заметку
-window.addEventListener('click', (target) => {
+window.addEventListener("click", (target) => {
   const targetClassName = target.target.parentNode.className;
   let idForDb;
   if (target.target.attributes.name) {
     idForDb = target.target.attributes.name.value;
   }
-  if (targetClassName === 'close button notes') {
+  if (targetClassName === "close button notes") {
     const post = target.path.find((container) => {
       if (container.attributes.class) {
-        if (container.attributes.class.value === 'articles-news') {
+        if (container.attributes.class.value === "articles-news") {
           return container;
         }
       }
       return false;
     });
-    const deleteApply = window.confirm('Заметка удалиться со всеми комментариями!\n Вы уверены что хотите удалить заметку?');
+    const deleteApply = window.confirm("Заметка удалиться со всеми комментариями!\n Вы уверены что хотите удалить заметку?");
     if (deleteApply) {
-      const main = document.querySelector('div.content');
-      xhr('delete', `api/v1/notes/${idForDb}`);
+      const main = document.querySelector("div.content");
+      xhr("delete", `api/v1/notes/${idForDb}`);
       main.removeChild(post);
     }
   }
 });
 
 // редактировать заметку
-window.addEventListener('click', (target) => {
+window.addEventListener("click", (target) => {
   const targetClassName = target.target.parentNode.className;
   let idForDb;
   if (target.target.attributes.name) {
     idForDb = target.target.attributes.name.value;
   }
-  if (targetClassName === 'like edit text button') {
+  if (targetClassName === "like edit text button") {
 
     return new Promise((resolve) => {
       const note = document.getElementById(`note-${idForDb}`);
       const noteText = note.innerText;
-      note.setAttribute('contenteditable', 'true');
-      note.style.background = '#FFFFFF';
+      note.setAttribute("contenteditable", "true");
+      note.style.background = "#FFFFFF";
       note.focus();
       resolve([note, noteText]);
     })
       .then(([note, noteText]) => {
         const elemNote = note;
-        elemNote.onblur = function () {
-          const saveChange = window.confirm('Сохранить изменения?');
-          elemNote.style.background = '';
-          note.setAttribute('contenteditable', 'false');
+        elemNote.onblur = function() {
+          const saveChange = window.confirm("Сохранить изменения?");
+          elemNote.style.background = "";
+          note.setAttribute("contenteditable", "false");
           if (saveChange) {
             const editText = `noteText=${elemNote.innerText}`;
-            xhr('put', `api/v1/notes/${idForDb}`, editText)
+            xhr("put", `api/v1/notes/${idForDb}`, editText)
               .catch(() => {
                 elemNote.innerText = noteText;
               });
@@ -85,18 +101,18 @@ window.addEventListener('click', (target) => {
   }
 });
 // поставить лайк
-window.addEventListener('click', (target) => {
+window.addEventListener("click", (target) => {
   const targetClassName = target.target.className;
   let idForDb;
   let response;
   if (target.target.attributes.name) {
     idForDb = target.target.attributes.name.value;
   }
-  if (targetClassName === 'like') {
+  if (targetClassName === "like") {
     const json = JSON.stringify({
       noteId: idForDb,
     });
-    xhr('post', '/api/v1/likes/', json, 'application/json')
+    xhr("post", "/api/v1/likes/", json, "application/json")
       .then((res) => {
         response = res;
         if (JSON.parse(res).status) {
@@ -107,7 +123,7 @@ window.addEventListener('click', (target) => {
       .then((like) => {
         const currentLikes = document.querySelector(`span.like > p[name="${idForDb}"]`);
         currentLikes.innerText = (+currentLikes.innerText + like);
-        const likes = document.querySelector('h6');
+        const likes = document.querySelector("h6");
         likes.innerText = `Набрано лайков: ${JSON.parse(response).likesCount}`;
         return true;
       })

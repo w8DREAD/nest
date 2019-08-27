@@ -13,7 +13,7 @@ window.addEventListener('click', (target) => {
       id: idForDb,
       text: textInner,
     });
-    xhr('post', '/api/v1/comments/', json, 'application/json')
+    xhr('post', '/api/v2/comments', json, 'application/json')
       .then((res) => {
         if (document.getElementById('elemErr')) {
           const delElem = document.getElementById('elemErr');
@@ -55,7 +55,7 @@ window.addEventListener('click', (target) => {
   if (targetClassName === 'close button comment') {
     const comment = target.path.find((container) => {
       if (container.attributes.class) {
-        if (container.attributes.class.value === 'articles-news comments') {
+        if (container.attributes.class.value === 'articles-news comments.controller.ts') {
           return container;
         }
       }
@@ -63,7 +63,7 @@ window.addEventListener('click', (target) => {
     });
     const deleteApply = window.confirm('Вы уверены что хотите удалить комментарий?');
     if (deleteApply) {
-      xhr('delete', `/api/v1/comments/${idForDb}`)
+      xhr('delete', `/api/v2/comments/${idForDb}`)
         .then(() => {
           comment.parentNode.removeChild(comment);
         })

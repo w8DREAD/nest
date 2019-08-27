@@ -14,11 +14,11 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db) {
   return db.runSql('CREATE TABLE notes (id SERIAL primary key, text VARCHAR, date VARCHAR,\n'
-    + 'userId INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL)');
+    + 'user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL)');
 };
 
 exports.down = function (db) {
-  return db.dropTable('notes');
+  return db.runSql("DROP TABLE notes");
 };
 
 exports._meta = {

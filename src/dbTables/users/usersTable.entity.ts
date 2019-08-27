@@ -21,8 +21,8 @@ export class Users {
   telephone: number;
 
   @Column()
-  myLike: number;
+  my_like: number;
 
   @Column()
-  notesCount: number;
+  notes_count: number;
 }

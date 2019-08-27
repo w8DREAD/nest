@@ -12,12 +12,17 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function(db) {
-  return db.runSql("CREATE TABLE likes (id SERIAL primary key, noteId INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL,\n"
-    + "userId INTEGER NOT NULL REFERENCES users (id))");
+exports.up = async function(db) {
+  await db.runSql(`CREATE TABLE likes (
+    id SERIAL primary key,
+    note_id INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL,
+    user_id INTEGER NOT NULL REFERENCES users (id)
+   )`);
+  return  db.runSql("CREATE INDEX idxLikes ON likes (note_id ASC, user_id ASC);");
 };
 
-exports.down = function(db) {
+exports.down = async function(db) {
+ await db.runSql("DROP INDEX idxLikes");
   return db.dropTable("likes");
 };
 
