@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Notes } from '../notes/notesTable.entity';
 
 @Entity()
 export class Tags {
@@ -8,6 +9,6 @@ export class Tags {
   @Column()
   tag: string;
 
-  @Column()
-  note_id: number;
+  @ManyToOne(type => Notes, (note) => note.tag, { onDelete: 'CASCADE' })
+  public note: Notes;
 }

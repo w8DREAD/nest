@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersTableModule } from './dbTables/users/usersTable.module';
-import { UsersLoginModule } from './users/usersLogin.module';
 import { AuthModule } from './auth/auth.module';
 import { AddNoteModule } from './modules/addNote/addNote.module';
 import { FeaturesModule } from './modules/features/features.module';
@@ -18,14 +17,21 @@ import { NotesTagsTableModule } from './dbTables/notesTags/notesTagsTable.module
 import { TagsTableModule } from './dbTables/tags/tagsTable.module';
 import { UsersModule } from './modules/users/users.module';
 import { CommentsModule } from './modules/comments/comments.module';
+import { TagsModule } from './modules/tags/tags.module';
+import { RedisModule } from 'nestjs-ioredis';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot(), RedisModule.forRoot({
+      name: 'test',
+      host: 'localhost',
+      port: 6379,
+      password: '12345',
+    }),
     RegisterModule, AuthModule, UsersTableModule, AddNoteModule, FeaturesModule,
     LoginModule, LogsModule, MainModule, NotesModule, PageNotesModule,
     RegisterModule, CommentsTableModule, LikesTableModule, NotesTableModule, NotesTagsTableModule,
-    TagsTableModule, UsersLoginModule, UsersModule, CommentsModule,
+    TagsTableModule, UsersModule, CommentsModule, TagsModule,
   ],
 })
 export class ApplicationModule {}

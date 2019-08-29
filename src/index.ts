@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ApplicationModule } from './app.module';
+import { ErrorFilter } from './errors/errors.filter';
 import { join } from 'path';
 import * as hbs from 'hbs';
 import * as passport from 'passport';
@@ -27,6 +28,7 @@ async function server() {
     resave: false,
     saveUninitialized: false,
   }));
+  app.useGlobalFilters(new ErrorFilter());
   await app.listen(3000);
 }
 server();

@@ -7,8 +7,10 @@ function formatDate() {
   let yy = date.getFullYear() % 100;
   if (yy < 10) { yy = `0${yy}`; }
 
-  const hh = date.getHours() % 100;
-  const min = date.getMinutes() % 100;
+  let hh = date.getHours() % 100;
+  if (hh < 10) { hh = `0${hh}`; }
+  let min = date.getMinutes() % 100;
+  if (min < 10) { min = `0${min}`; }
 
   return `${dd}.${mm}.${yy} в ${hh}:${min}`;
 }
@@ -88,7 +90,7 @@ window.addEventListener("click", (target) => {
           elemNote.style.background = "";
           note.setAttribute("contenteditable", "false");
           if (saveChange) {
-            const editText = `noteText=${elemNote.innerText}`;
+            const editText = `text=${elemNote.innerText}`;
             xhr("put", `api/v1/notes/${idForDb}`, editText)
               .catch(() => {
                 elemNote.innerText = noteText;

@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Users } from '../users/usersTable.entity';
+import { Notes } from '../notes/notesTable.entity';
 
 @Entity()
 export class Comments {
@@ -8,9 +10,9 @@ export class Comments {
   @Column()
   text: string;
 
-  @Column()
-  note_id: number;
+  @ManyToOne(type => Notes, (note) => note.comment, { onDelete: 'CASCADE' })
+  public note: Notes;
 
-  @Column()
-  user_id: number;
+  @ManyToOne(type => Users, (user) => user.comment)
+  public user: Comments;
 }

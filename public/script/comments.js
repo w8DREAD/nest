@@ -10,7 +10,7 @@ window.addEventListener('click', (target) => {
     const textInner = enterField.innerText;
     const containerForComments = document.getElementById(`add-notes-${idForDb}`);
     const json = JSON.stringify({
-      id: idForDb,
+      note: idForDb,
       text: textInner,
     });
     xhr('post', '/api/v2/comments', json, 'application/json')

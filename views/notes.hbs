@@ -14,7 +14,7 @@
                     <br>
                     <div id="container-tags-{{id}}">
                     {{#tag}}
-                        <button type="submit" class="close button delete tags" data-dismiss="alert" aria-label="Close" style="float: none" id="delete-tag-{{id}}" name="{{noteId}}">
+                        <button type="submit" class="close button delete tags" data-dismiss="alert" aria-label="Close" style="float: none" id="delete-tag-{{id}}" name="{{note_id}}">
                         <span aria-hidden="true" id="delete-tags-{{id}}" name={{id}}>&times;</span>
                     </button>
                 <a id="tag-{{id}}" href="" style="margin-left: 3px">{{tag}}</a>
@@ -31,21 +31,21 @@
                     {{text}}
             </a>
             <div style="margin: 15px 0 15px 0" id="info-note-{{id}}">
-                Автор: {{author}} <br> Опубликовано: {{date}}
+                Автор: {{user.username}} <br> Опубликовано: {{date}}
             </div>
 
 
         <div class="collapse" id="collapseExample-{{id}}">
-            {{#comments}}
+            {{#comment}}
             <div class="articles-news comments">
                {{text}}<br>
                 <button type="submit" class="close button comment" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true" id="delete-comment-{{id}}" name={{id}}>&times;</span>
                 </button>
                 <br>
-                <span aria-hidden="true" style="float: left; margin-top: 10px">Комментарий от: {{author}}</span>
+                <span aria-hidden="true" style="float: left; margin-top: 10px">Комментарий от: {{comment.user.username}}</span>
             </div>
-            {{/comments}}
+            {{/comment}}
             <div class="input-group add-notes" id="add-notes-{{id}}">
 
                 <div class="input-group-prepend">

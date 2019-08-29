@@ -2,15 +2,39 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Likes } from './likesTable.entity';
+import { Notes } from '../notes/notesTable.entity';
 
 @Injectable()
 export class LikesTableService {
   constructor(
     @InjectRepository(Likes)
     private readonly likesRepository: Repository<Likes>,
+    @InjectRepository(Notes)
+    private readonly notesRepository: Repository<Notes>,
   ) {}
 
-  async findAll(): Promise<Likes[]> {
-    return await this.likesRepository.find();
+  async findAll(prop): Promise<Likes[]> {
+    return await this.likesRepository.find(prop);
+  }
+
+  async findAllLikesUser(user): Promise<any> {
+    // const likes = await this.notesRepository.find({select: ['id'], where: {user_id: 1}});
+    // return likes;
+
+    const notes = await this.notesRepository
+      .createQueryBuilder('n')
+      .leftJoinAndSelect('n.user', 'u')
+      .getMany();
+
+    console.log(notes);
+
+  }
+
+  async save(userId, noteId): Promise<any> {
+    return await this.likesRepository.save({user: userId, note: noteId});
+  }
+
+  async remove(userId, noteId): Promise <any> {
+    return await this.likesRepository.delete({user: userId, note: noteId});
   }
 }

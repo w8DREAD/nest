@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
+import { Notes } from '../notes/notesTable.entity';
+import { Comments } from '../comments/commentsTable.entity';
+import { Likes } from '../likes/likesTable.entity';
 
 @Entity()
 export class Users {
@@ -25,4 +28,13 @@ export class Users {
 
   @Column()
   notes_count: number;
+
+  @OneToMany(type => Notes, (notes) => notes.user)
+  public note: Notes[];
+
+  @OneToMany(type => Comments, (comments) => comments.user)
+  public comment: Comments[];
+
+  @OneToMany(type => Likes, (like) => like.user)
+  public like: Likes[];
 }

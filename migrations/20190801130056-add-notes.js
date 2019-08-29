@@ -12,9 +12,10 @@ exports.setup = function (options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function (db) {
-  return db.runSql('CREATE TABLE notes (id SERIAL primary key, text VARCHAR, date VARCHAR,\n'
-    + 'user_id INTEGER REFERENCES users (id) ON DELETE CASCADE NOT NULL)');
+exports.up = async function (db) {
+  return  db.runSql('CREATE TABLE notes (id SERIAL primary key, text VARCHAR, date VARCHAR)');
+  // return db.runSql('ALTER TABLE notes ADD CONSTRAINT usersnotes \n' +
+  //   '  FOREIGN KEY (user_id) REFERENCES users(id);')
 };
 
 exports.down = function (db) {

@@ -17,8 +17,9 @@ window.addEventListener('click', (target) => {
       const tag = input.value;
       const containerForTags = document.getElementById(`container-tags-${idForDb}`);
       if (input.value.length) {
-        xhr('post', '/api/v1/tags', JSON.stringify({tag: input.value, noteId: idForDb}), 'application/json')
+        xhr('post', '/api/v2/tags', JSON.stringify({tag: input.value, note: idForDb}), 'application/json')
           .then((res) => {
+            console.log(input)
             input.parentNode.removeChild(input);
             containerForTags.insertAdjacentHTML('afterbegin',
               `<button type="submit" class="close button tags" data-dismiss="alert" 
@@ -44,8 +45,8 @@ window.addEventListener('click', (target) => {
   if (targetClassName === 'close button delete tags') {
     const deleteButton = document.getElementById(`delete-tag-${idForDb}`);
     const tag = document.getElementById(`tag-${idForDb}`);
-    const noteId = `noteId=${target.target.parentNode.attributes.name.value}`;
-    xhr('delete', `/api/v1/tags/${idForDb}`, noteId)
+    const noteId = `note=${target.target.parentNode.attributes.name.value}`;
+    xhr('delete', `/api/v2/tags/${idForDb}`, noteId)
       .then(() => {
         tag.parentNode.removeChild(tag);
         deleteButton.parentNode.removeChild(deleteButton);

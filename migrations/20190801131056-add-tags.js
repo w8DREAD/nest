@@ -14,8 +14,10 @@ exports.setup = function (options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function (db) {
-  return db.runSql('CREATE TABLE tags (id SERIAL primary key, tag VARCHAR, note_id INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL)');
+exports.up = async function (db) {
+  return  db.runSql('CREATE TABLE tags (id SERIAL primary key, tag VARCHAR)');
+  // return db.runSql('ALTER TABLE tags ADD CONSTRAINT tagsnotes\n' +
+  //   '  FOREIGN KEY (note_id) REFERENCES notes(id) ON DELETE CASCADE;')
 };
 
 exports.down = function (db) {

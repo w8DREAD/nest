@@ -12,10 +12,11 @@ exports.setup = function (options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function (db) {
-  return db.runSql('CREATE TABLE comments (id SERIAL primary key, text VARCHAR,\n'
-    + 'note_id INTEGER REFERENCES notes (id) ON DELETE CASCADE NOT NULL, '
-    + 'user_id INTEGER REFERENCES users (id) NOT NULL)');
+exports.up = async function (db) {
+  return  db.runSql('CREATE TABLE comments (id SERIAL primary key, text VARCHAR)');
+  // await db.runSql('ALTER TABLE comments ADD CONSTRAINT userscomments FOREIGN KEY (user_id) REFERENCES users(id);');
+  // return db.runSql('ALTER TABLE comments ADD CONSTRAINT notescomments\n' +
+  //   '  FOREIGN KEY (note_id) REFERENCES notes(id) ON DELETE CASCADE;')
 };
 
 exports.down = function (db) {
