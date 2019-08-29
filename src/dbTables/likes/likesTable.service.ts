@@ -18,16 +18,8 @@ export class LikesTableService {
   }
 
   async findAllLikesUser(user): Promise<any> {
-    // const likes = await this.notesRepository.find({select: ['id'], where: {user_id: 1}});
-    // return likes;
-
-    const notes = await this.notesRepository
-      .createQueryBuilder('n')
-      .leftJoinAndSelect('n.user', 'u')
-      .getMany();
-
-    console.log(notes);
-
+    const likes = await this.notesRepository.find({select: ['id'], where: {user_id: 1}});
+    return likes;
   }
 
   async save(userId, noteId): Promise<any> {

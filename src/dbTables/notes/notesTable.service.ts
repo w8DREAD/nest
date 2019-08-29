@@ -16,6 +16,7 @@ export class NotesTableService {
       .leftJoinAndSelect('notes.user', 'user')
       .leftJoinAndSelect('notes.tag', 'tag')
       .leftJoinAndSelect('notes.comment', 'comment')
+      .leftJoinAndSelect('notes.like', 'like')
       .getMany();
   }
 

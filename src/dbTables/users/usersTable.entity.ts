@@ -32,7 +32,7 @@ export class Users {
   @OneToMany(type => Notes, (notes) => notes.user)
   public note: Notes[];
 
-  @OneToMany(type => Comments, (comments) => comments.user)
+  @OneToMany(type => Comments, (comment) => comment.user)
   public comment: Comments[];
 
   @OneToMany(type => Likes, (like) => like.user)

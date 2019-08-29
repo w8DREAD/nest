@@ -18,10 +18,10 @@ export class Notes {
   @Column()
   com_count: number;
 
-  @OneToMany(type => Likes, (likes) => likes.note)
+  @OneToMany(type => Likes, (like) => like.note)
   public like: Likes[];
 
-  @OneToMany(type => Comments, (comments) => comments.note)
+  @OneToMany(type => Comments, (comment) => comment.note)
   public comment: Comments[];
 
   @ManyToOne(type => Users, (user) => user.note)
