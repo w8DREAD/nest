@@ -24,12 +24,14 @@ export class NotesController {
   @Post(':id/likes')
   async like(@Res() res, @Req() req, @Param('id') id: number) {
     const userId = 1;
-    const noteId = id;
-    const existLike = await this.likes.findAll({userId, noteId});
-    if (existLike.length) {
+    const noteId = Number(id);
+    const existLike = await this.likes.findAll(userId, noteId);
+    console.log(existLike)
+    if (existLike) {
     await this.likes.remove(userId, noteId);
     } else {
       await this.likes.save(userId, noteId);
+      console.log(await this.likes.findAllLikesUser(noteId))
     }
     res.sendStatus(202);
   }

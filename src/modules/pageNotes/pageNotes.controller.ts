@@ -14,7 +14,6 @@ export class PageNotesController {
   @Render('notes')
   async root() {
       const comment = await this.notes.findAll();
-      console.log(comment);
       return {
       news: 'Тут будут новости',
       addClassNews: 'active',

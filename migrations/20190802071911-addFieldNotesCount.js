@@ -19,8 +19,8 @@ exports.up = function (db) {
     "$function$\n" +
     "BEGIN\n" +
     "UPDATE users SET notes_count = (SELECT COUNT(*)" +
-    "FROM notes WHERE user_id = users.id)" +
-    "WHERE id = NEW.user_id;\n" +
+    "FROM notes WHERE \"userId\" = users.id)" +
+    "WHERE id = NEW.\"userId\";\n" +
     "RETURN NEW;\n" +
     "END;\n" +
     "$function$\n" +
@@ -37,8 +37,8 @@ exports.up = function (db) {
     "$function$\n" +
     "BEGIN\n" +
     "UPDATE users SET notes_count = (SELECT COUNT(*) \n" +
-    "FROM notes WHERE user_id = users.id)\n" +
-    "WHERE id = OLD.user_id;\n" +
+    "FROM notes WHERE \"userId\" = users.id)\n" +
+    "WHERE id = OLD.\"userId\";\n" +
     "RETURN NEW;\n" +
     "END;\n" +
     "$function$\n" +

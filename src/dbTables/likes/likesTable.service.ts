@@ -13,12 +13,16 @@ export class LikesTableService {
     private readonly notesRepository: Repository<Notes>,
   ) {}
 
-  async findAll(prop): Promise<Likes[]> {
-    return await this.likesRepository.find(prop);
+  async findAll(userId, noteId): Promise<Likes> {
+    return await this.likesRepository.findOne({user: userId, note: noteId});
   }
 
-  async findAllLikesUser(user): Promise<any> {
-    const likes = await this.notesRepository.find({select: ['id'], where: {user_id: 1}});
+  async findAllLikesUser(noteId): Promise<any> {
+    const likes = await this.notesRepository
+        .createQueryBuilder('notes')
+        .select('notes.user', 'user')
+        .where('notes.id = :id', {id: noteId})
+        .getRawOne();
     return likes;
   }
 
