@@ -19,7 +19,6 @@ window.addEventListener('click', (target) => {
       if (input.value.length) {
         xhr('post', '/api/v2/tags', JSON.stringify({tag: input.value, note: idForDb}), 'application/json')
           .then((res) => {
-            console.log(input)
             input.parentNode.removeChild(input);
             containerForTags.insertAdjacentHTML('afterbegin',
               `<button type="submit" class="close button tags" data-dismiss="alert" 

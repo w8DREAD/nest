@@ -8,6 +8,7 @@ export class TagsController {
   constructor(private readonly tags: TagsTableService) {}
   @Post()
   async add(@Body() addTagsDto: AddTagsDto, @Res() res, @Req() req) {
+    await this.tags.updateTags(addTagsDto);
     await this.tags.save(addTagsDto);
     res.sendStatus(202);
   }
