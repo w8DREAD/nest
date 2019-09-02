@@ -18,7 +18,7 @@ exports.up = async function(db) {
       "AS\n" +
       "$function$\n" +
       "BEGIN\n" +
-      "UPDATE notes SET com_count = (SELECT COUNT(*) FROM comments WHERE noteId = NEW.\"noteId\") WHERE id = NEW.\"noteId\";\n" +
+      "UPDATE notes SET com_count = (SELECT COUNT(*) FROM comments WHERE \"noteId\" = NEW.\"noteId\") WHERE id = NEW.\"noteId\";\n" +
       "RETURN NEW;\n" +
       "END;\n" +
       "$function$\n" +

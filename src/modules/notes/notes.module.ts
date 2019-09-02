@@ -8,6 +8,6 @@ import { NotesService } from './notes.service';
   imports: [NotesTableModule, LikesTableModule],
   providers: [NotesService],
   controllers: [NotesController],
-  exports: [NotesService],
+  exports: [NotesService]
 })
 export class NotesModule {}

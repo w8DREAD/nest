@@ -19,6 +19,7 @@ import { UsersModule } from './modules/users/users.module';
 import { CommentsModule } from './modules/comments/comments.module';
 import { TagsModule } from './modules/tags/tags.module';
 import { RedisModule } from 'nestjs-ioredis';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -27,7 +28,7 @@ import { RedisModule } from 'nestjs-ioredis';
       host: 'localhost',
       port: 6379,
       password: '12345',
-    }),
+    }), MongooseModule.forRoot('mongodb://localhost:27017/'),
     RegisterModule, AuthModule, UsersTableModule, AddNoteModule, FeaturesModule,
     LoginModule, LogsModule, MainModule, NotesModule, PageNotesModule,
     RegisterModule, CommentsTableModule, LikesTableModule, NotesTableModule, NotesTagsTableModule,

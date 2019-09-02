@@ -5,10 +5,13 @@ import { Response } from 'express';
 
 @Controller('/api/v2')
 export class UsersController {
-  constructor(private readonly users: UsersTableService) {}
+  constructor(
+    private readonly users: UsersTableService,
+  ) {}
 @Post('/users')
   async add(@Res() res, @Body() addUsersDto: AddUsersDto) {
     await this.users.save(addUsersDto);
+    await this.users.saveInMongo(addUsersDto);
     res.redirect('/login');
-}
+  }
 }

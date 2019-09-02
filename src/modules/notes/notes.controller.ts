@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Res, Req, UseGuards, Delete, Param, Put } from '@nestjs/common';
 import { NotesTableService } from '../../dbTables/notes/notesTable.service';
-import {LikesTableService} from '../../dbTables/likes/likesTable.service';
+import { LikesTableService } from '../../dbTables/likes/likesTable.service';
 import { AddNotesDto } from '../../dto/notes.dto';
 import { AuthenticatedGuard } from '../../auth/guards/authenticated.guard';
 import { NotesService } from './notes.service';
@@ -26,12 +26,10 @@ export class NotesController {
     const userId = 1;
     const noteId = Number(id);
     const existLike = await this.likes.findAll(userId, noteId);
-    console.log(existLike)
     if (existLike) {
     await this.likes.remove(userId, noteId);
     } else {
       await this.likes.save(userId, noteId);
-      console.log(await this.likes.findAllLikesUser(noteId))
     }
     res.sendStatus(202);
   }
