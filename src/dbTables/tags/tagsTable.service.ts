@@ -10,10 +10,10 @@ import { Users } from '../users/usersTable.entity';
 
 @Injectable()
 export class TagsTableService {
-  private readonly collection: mongo.Collection;
+  // private readonly collection: mongo.Collection;
   constructor(
-    @InjectDb()
-    private readonly db: mongo.Db,
+    // @InjectDb()
+    // private readonly db: mongo.Db,
     @InjectRepository(Tags)
     private readonly tagsRepository: Repository<Tags>,
     @InjectRepository(Notes)
@@ -21,7 +21,7 @@ export class TagsTableService {
     @InjectRepository(Users)
     private readonly usersRepository: Repository<Users>,
   ) {
-    this.collection = this.db.collection('users');
+    // this.collection = this.db.collection('users');
   }
 
   private async getUser(tag): Promise<any> {
@@ -53,7 +53,7 @@ export class TagsTableService {
       .select('tags')
       .where('notes.\"userId\" = :id', {id: user.user_id})
       .getRawMany();
-    await this.collection.updateOne({email: user.user_email}, {allTags: tagsText});
+    // await this.collection.updateOne({email: user.user_email}, {allTags: tagsText});
     return true;
   }
 

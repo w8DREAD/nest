@@ -11,7 +11,7 @@ export class UsersController {
 @Post('/users')
   async add(@Res() res, @Body() addUsersDto: AddUsersDto) {
     await this.users.save(addUsersDto);
-    await this.users.saveInMongo(addUsersDto);
+    // await this.users.saveInMongo(addUsersDto);
     res.redirect('/login');
   }
 }

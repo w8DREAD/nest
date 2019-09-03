@@ -11,10 +11,10 @@ import { InjectRedisClient } from 'nestjs-ioredis';
 
 @Injectable()
 export class LikesTableService {
-  private readonly collection: mongo.Collection;
+  // private readonly collection: mongo.Collection;
   constructor(
-    @InjectDb()
-    private readonly db: mongo.Db,
+    // @InjectDb()
+    // private readonly db: mongo.Db,
     @InjectRepository(Likes)
     private readonly likesRepository: Repository<Likes>,
     @InjectRepository(Notes)
@@ -24,7 +24,7 @@ export class LikesTableService {
     @InjectRedisClient('test')
     private readonly redis: Redis.Redis,
   ) {
-    this.collection = this.db.collection('users');
+    // this.collection = this.db.collection('users');
   }
 
   async findAll(userId, noteId): Promise<Likes> {
@@ -104,7 +104,7 @@ export class LikesTableService {
     const usersLikes = await this.redis.hgetall('likes');
     for (const user in usersLikes) {
       const userRaiting = Math.round((Number(usersLikes[user]) / maxLikes) * 100);
-      await this.collection.updateOne({email: user}, { $set: { raitingUserLikes: userRaiting }});
+      // await this.collection.updateOne({email: user}, { $set: { raitingUserLikes: userRaiting }});
     }
     return true;
   }
@@ -114,7 +114,7 @@ export class LikesTableService {
     const usersLikes = await this.redis.hgetall('likesLast10Notes');
     for (const user in usersLikes) {
       const userRaiting = Math.round((Number(usersLikes[user]) / maxLikes) * 100);
-      await this.collection.updateOne({email: user}, { $set: { raitingUserLikes: userRaiting }});
+      // await this.collection.updateOne({email: user}, { $set: { raitingUserLikes: userRaiting }});
     }
     return true;
   }
