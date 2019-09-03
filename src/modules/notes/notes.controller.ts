@@ -15,10 +15,10 @@ export class NotesController {
   @UseGuards(AuthenticatedGuard)
   @Post()
   async add(@Body() addNotesDto: AddNotesDto, @Res() res, @Req() req) {
-    addNotesDto.user = req.session.passport.user.id;
+    addNotesDto.user = 1;
     addNotesDto.com_count = 0;
     await this.notes.save(addNotesDto);
-    res.redirect('/');
+    res.redirect('/').sendStatus(202);
   }
 
   @Post(':id/likes')
