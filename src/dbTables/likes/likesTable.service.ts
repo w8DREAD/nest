@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { InjectDb } from 'nest-mongodb';
+import * as mongo from 'mongodb';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Likes } from './likesTable.entity';
@@ -9,7 +11,10 @@ import { InjectRedisClient } from 'nestjs-ioredis';
 
 @Injectable()
 export class LikesTableService {
+  // private readonly collection: mongo.Collection;
   constructor(
+    // @InjectDb()
+    // private readonly db: mongo.Db,
     @InjectRepository(Likes)
     private readonly likesRepository: Repository<Likes>,
     @InjectRepository(Notes)
@@ -18,7 +23,9 @@ export class LikesTableService {
     private readonly usersRepository: Repository<Users>,
     @InjectRedisClient('test')
     private readonly redis: Redis.Redis,
-  ) {}
+  ) {
+    // this.collection = this.db.collection('users');
+  }
 
   async findAll(userId, noteId): Promise<Likes> {
     return await this.likesRepository.findOne({user: userId, note: noteId});
@@ -92,4 +99,23 @@ export class LikesTableService {
     return maxLikes;
   }
 
+  async raitingAllLikes(): Promise<boolean> {
+    const maxLikes = await this.recountMaxLikes();
+    const usersLikes = await this.redis.hgetall('likes');
+    for (const user in usersLikes) {
+      const userRaiting = Math.round((Number(usersLikes[user]) / maxLikes) * 100);
+      // await this.collection.updateOne({email: user}, { $set: { raitingUserLikes: userRaiting }});
+    }
+    return true;
+  }
+
+  async raitingLikesLast10Notes(): Promise<boolean> {
+    const maxLikes = await this.recountMaxLikesLast10Notes();
+    const usersLikes = await this.redis.hgetall('likesLast10Notes');
+    for (const user in usersLikes) {
+      const userRaiting = Math.round((Number(usersLikes[user]) / maxLikes) * 100);
+      // await this.collection.updateOne({email: user}, { $set: { raitingUserLikes: userRaiting }});
+    }
+    return true;
+  }
 }

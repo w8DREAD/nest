@@ -7,14 +7,14 @@ import { Users } from './usersTable.entity';
 
 @Injectable()
 export class UsersTableService {
-  private readonly collection: mongo.Collection;
+  // private readonly collection: mongo.Collection;
   constructor(
-    @InjectDb()
-    private readonly db: mongo.Db,
+    // @InjectDb()
+    // private readonly db: mongo.Db,
     @InjectRepository(Users)
     private readonly usersRepository: Repository<Users>,
   ) {
-    this.collection = this.db.collection('users');
+    // this.collection = this.db.collection('users');
   }
 
   async findAll(): Promise<Users[]> {
@@ -29,8 +29,8 @@ export class UsersTableService {
     return await this.usersRepository.save(user);
   }
 
-  async saveInMongo(user): Promise<boolean> {
-    await this.collection.insertOne(user);
-    return true;
-  }
+  // async saveInMongo(user): Promise<boolean> {
+  //   await this.collection.insertOne(user);
+  //   return true;
+  // }
 }

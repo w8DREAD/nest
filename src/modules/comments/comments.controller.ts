@@ -8,7 +8,7 @@ export class CommentsController {
   constructor(private readonly comments: CommentsTableService) {}
   @Post()
   async add(@Body() addCommentsDto: AddCommentsDto, @Res() res, @Req() req) {
-    addCommentsDto.user = req.session.passport.user.id;
+    addCommentsDto.user = 1
     await this.comments.save(addCommentsDto);
     res.sendStatus(202);
   }

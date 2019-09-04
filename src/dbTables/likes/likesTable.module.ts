@@ -4,9 +4,12 @@ import { LikesTableService } from './likesTable.service';
 import { Likes } from './likesTable.entity';
 import { Notes } from '../notes/notesTable.entity';
 import { Users } from '../users/usersTable.entity';
+import { MongoModule } from 'nest-mongodb';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Likes, Notes, Users])],
+  imports: [TypeOrmModule.forFeature([Likes, Notes, Users]), 
+    // MongoModule.forRoot('mongodb://localhost:27017', 'usersdb')
+  ],
   providers: [LikesTableService],
   exports: [LikesTableService],
 })
