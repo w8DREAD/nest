@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eba9aea2-2187-4298-8d19-a63eb7820ff5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/notes/.dockerignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/notes/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes/ormconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/notes/ormconfig.json" afterDir="false" />
@@ -189,7 +188,7 @@
       <workItem from="1566813994580" duration="380000" />
       <workItem from="1566814512158" duration="1401000" />
       <workItem from="1566824465494" duration="106312000" />
-      <workItem from="1567579401030" duration="31870000" />
+      <workItem from="1567579401030" duration="32150000" />
     </task>
     <servers />
   </component>
