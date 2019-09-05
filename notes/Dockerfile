@@ -11,7 +11,6 @@
 #EXPOSE 3000
 #
 #ENTRYPOINT ["npm","run","start"]
-
 FROM node:latest
 WORKDIR /app
 COPY package.json .
