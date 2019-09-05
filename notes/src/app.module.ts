@@ -26,14 +26,13 @@ import { MongooseModule } from '@nestjs/mongoose';
     TypeOrmModule.forRoot(),
     RedisModule.forRoot({
       name: 'test',
-      host: 'redis_1',
+      host: 'redis',
       port: 6379,
       password: '12345',
     }),
-    MongooseModule.forRoot('mongodb://mongo_1:27017',
+    MongooseModule.forRoot('mongodb://mongo:27017',
       {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
       }),
     RegisterModule, AuthModule, UsersTableModule, AddNoteModule, FeaturesModule,
     LoginModule, LogsModule, MainModule, NotesModule, PageNotesModule,

@@ -6,7 +6,7 @@ import { MongoModule } from 'nest-mongodb';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Users]),
-    MongoModule.forRoot('mongodb://mongo_1:27017', 'usersdb'),
+    MongoModule.forRoot('mongodb://mongo:27017', 'usersdb'),
   ],
   providers: [UsersTableService],
   exports: [UsersTableService],

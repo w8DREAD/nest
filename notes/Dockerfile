@@ -12,7 +12,7 @@
 #
 #ENTRYPOINT ["npm","run","start"]
 
-FROM node:10
+FROM node:latest
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
