@@ -7,7 +7,7 @@ import { Users } from '../users/usersTable.entity';
 import { MongoModule } from 'nest-mongodb';
 @Module({
   imports: [TypeOrmModule.forFeature([Likes, Notes, Users]),
-    MongoModule.forRoot('mongodb://mongo:27017', 'usersdb')],
+    MongoModule.forRoot('mongodb://mongo:27017/', 'usersdb')],
   providers: [LikesTableService],
   exports: [LikesTableService],
 })

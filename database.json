@@ -3,7 +3,7 @@
     "driver": "pg",
     "user": "postgres",
     "password": "12345",
-    "host": "localhost",
+    "host": "postgres",
     "database": "postgres",
     "port": 5432,
     "schema": "my_schema"
