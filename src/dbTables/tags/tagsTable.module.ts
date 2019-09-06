@@ -10,8 +10,7 @@ import { Users } from '../users/usersTable.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Tags, Notes, Users]),
-    MongoModule.forRoot('mongodb://mongo:27017', 'usersdb'),
-    NotesModule, UsersTableModule],
+    MongoModule.forRoot('mongodb://mongo:27017', 'usersdb'), NotesModule, UsersTableModule],
   providers: [TagsTableService],
   exports: [TagsTableService],
 })

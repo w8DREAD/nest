@@ -29,8 +29,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       host: 'redis',
       port: 6379,
       password: '12345',
-    }),
-    MongooseModule.forRoot('mongodb://mongo:27017',
+    }), MongooseModule.forRoot('mongodb://mongo:27017/userdb',
       {
         useNewUrlParser: true,
       }),
