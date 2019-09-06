@@ -45,19 +45,19 @@ services:
       - postgres
     volumes:
       - ./:/app
-#  app3:
-#    container_name: app3
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - 3003:3000
-#    depends_on:
-#      - redis
-#      - mongo
-#      - postgres
-#    volumes:
-#      - ./:/app
+  app3:
+    container_name: app3
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3003:3000
+    depends_on:
+      - redis
+      - mongo
+      - postgres
+    volumes:
+      - ./:/app
 #  app4:
 #    container_name: app4
 #    build:
@@ -71,4 +71,16 @@ services:
 #    - postgres
 #    volumes:
 #      - ./:/app
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: nginx.Dockerfile
+    image: nginx
+    ports:
+      - 8080:8080
+    depends_on:
+      - app1
+      - app2
+      - app3
 
